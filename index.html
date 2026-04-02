@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>GR&ND · Estudio de Abogados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #ffffff;
+            color: #1a2e1f;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --verde-gr: #0f5c2f;
+            --verde-claro: #2e7d4e;
+            --verde-suave: #eaf7ef;
+            --blanco-puro: #ffffff;
+            --gris-fondo: #f9faf9;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navegación */
+        .navbar {
+            background-color: var(--blanco-puro);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e0f0e4;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--verde-gr);
+            text-decoration: none;
+        }
+        .logo span {
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e3a2a;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--verde-gr);
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 48px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--verde-gr);
+            color: white;
+            box-shadow: 0 2px 6px rgba(15, 92, 47, 0.2);
+        }
+        .btn-primary:hover {
+            background-color: #094d27;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--verde-gr);
+            color: var(--verde-gr);
+        }
+        .btn-outline:hover {
+            background-color: var(--verde-gr);
+            color: white;
+        }
+
+        .btn-light {
+            background-color: white;
+            border: 1px solid #cde3d4;
+            color: var(--verde-gr);
+        }
+        .btn-light:hover {
+            background-color: var(--verde-suave);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 0 4rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f4faf6 100%);
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #0a4022;
+        }
+        .hero-tag {
+            font-size: 1.2rem;
+            color: var(--verde-gr);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #2c4b35;
+            margin-bottom: 2rem;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero-image {
+            flex: 1;
+            background-color: var(--verde-suave);
+            border-radius: 48px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Secciones */
+        section {
+            padding: 4rem 0;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0f5c2f;
+            border-left: 6px solid var(--verde-gr);
+            padding-left: 1.2rem;
+        }
+        .section-sub {
+            color: #446d51;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Áreas de práctica - cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e2f0e6;
+            transition: all 0.2s;
+        }
+        .card:hover {
+            border-color: var(--verde-claro);
+            transform: translateY(-4px);
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #0f5c2f;
+        }
+        .card p {
+            color: #2e4a38;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Socios */
+        .socios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .socio-card {
+            background: var(--blanco-puro);
+            border-radius: 32px;
+            padding: 1.8rem;
+            border: 1px solid #e1efe6;
+            transition: 0.2s;
+        }
+        .socio-card h4 {
+            font-size: 1.3rem;
+            color: var(--verde-gr);
+            margin-bottom: 0.25rem;
+        }
+        .socio-card .cargo {
+            font-weight: 600;
+            color: #5e7b67;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #d4e8db;
+            padding-bottom: 0.5rem;
+        }
+        .socio-card p {
+            font-size: 0.95rem;
+            color: #2c4b35;
+            margin-bottom: 1rem;
+        }
+
+        /* Contacto */
+        .contact-section {
+            background-color: var(--verde-suave);
+            border-radius: 48px;
+            margin: 2rem 0;
+            padding: 3rem 2rem;
+        }
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .contact-info p {
+            margin: 0.5rem 0;
+        }
+        .contact-info i {
+            font-weight: 600;
+            color: var(--verde-gr);
+        }
+
+        footer {
+            background-color: #0f2f1a;
+            color: #cee6d7;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #c1e0cf;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .nav-flex {
+                flex-direction: column;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <a href="#" class="logo">GR<span>&</span>ND</a>
+        <div class="nav-links">
+            <a href="#">Inicio</a>
+            <a href="#areas">Áreas de Práctica</a>
+            <a href="#socios">Socios</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <div>
+            <button class="btn btn-outline" id="btnConsultaRapida">📋 Consulta Legal</button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero / La Firma -->
+    <div class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="hero-title">GR & ND<br><span style="font-size: 1.2rem;">Ingeniería legal, dinamismo y especialidad</span></h1>
+                <div class="hero-tag">⚖️ Proteger a nuestros clientes es la prioridad</div>
+                <p class="hero-desc">
+                    Ante un ambiente de negocios complejo, se requiere una firma que provea servicios legales de alta especialidad, diseñados de acuerdo con las necesidades de cada cliente. 
+                    Somos una firma con más de 35 años de experiencia acumulada, formada por socios jóvenes que conjugan destreza y dinamismo.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" id="btnConocerFirma">📖 Conocer la firma</button>
+                    <button class="btn btn-light" id="btnAreasPractica">📌 Áreas de práctica</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <svg width="200" height="160" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100%" height="100%" fill="#EAF7EF" rx="28" />
+                    <path d="M100,100 L140,70 L200,70 L240,100 L200,130 L140,130 Z" fill="#0f5c2f" opacity="0.8" />
+                    <text x="165" y="105" font-size="28" fill="white" font-weight="bold">⚖️</text>
+                </svg>
+                <p style="margin-top: 12px; font-weight: 500;">Especialidad & confianza</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Áreas de Práctica completas -->
+    <div class="container" id="areas">
+        <h2 class="section-title">Áreas de Práctica</h2>
+        <p class="section-sub">Ingeniería legal especializada para cada sector</p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">📜</div>
+                <h3>Correduría / Fe Pública / Valuación</h3>
+                <p>Más de 20 mil operaciones exitosas. Notificaciones, fe de hechos, valuación de bienes, intangibles, joyas, aeronaves, precios de transferencia.</p>
+                <button class="btn btn-outline info-area" data-area="correduria">Saber más</button>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏦</div>
+                <h3>Financiero</h3>
+                <p>Regulatorio, bancario, bursátil, Project Finance, cumplimiento y prevención de lavado de dinero. Asesoría a bancos, SOFOMES, SOFIPOS, FINTECH.</p>
+                <button class="btn btn-outline info-area" data-area="financiero">Saber más</button>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏢</div>
+                <h3>Corporativo</h3>
+                <p>Gobierno corporativo, fusiones, adquisiciones, due diligence, propiedad intelectual, derecho migratorio, joint ventures y reestructuras.</p>
+                <button class="btn btn-outline info-area" data-area="corporativo">Saber más</button>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚖️</div>
+                <h3>Derecho Administrativo y Litigio</h3>
+                <p>Amparo, juicios de nulidad, representación ante autoridades (SAT, IMSS, PROFECO, CNBV, etc.), litigio mercantil y estrategias de defensa.</p>
+                <button class="btn btn-outline info-area" data-area="administrativo">Saber más</button>
+            </div>
+            <div class="card">
+                <div class="card-icon">📡</div>
+                <h3>Telecom</h3>
+                <p>Concesiones, licencias, regulación sectorial, representación ante IFT, SCT, UIT, CITEL. Primer permiso OMVR en México.</p>
+                <button class="btn btn-outline info-area" data-area="telecom">Saber más</button>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3>Mediación Privada</h3>
+                <p>Mediación Civil, Mercantil y Familiar con Mediador certificado por el TSJCDMX. Convenios con fuerza de sentencia ejecutable.</p>
+                <button class="btn btn-outline info-area" data-area="mediacion">Saber más</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socios -->
+    <div class="container" id="socios">
+        <h2 class="section-title">Socios</h2>
+        <p class="section-sub">Experiencia, especialidad y liderazgo en cada práctica</p>
+        <div class="socios-grid">
+            <div class="socio-card">
+                <h4>Daniel F. Núñez Durán</h4>
+                <div class="cargo">Socio · Financiero, Bursátil, PLD</div>
+                <p>Abogado financiero y corporativo. Estructuración de programas de cumplimiento, operaciones internacionales, gobiernos corporativos y bursatilización.</p>
+                <button class="btn btn-light bio-socio" data-socio="daniel">Ver perfil completo</button>
+            </div>
+            <div class="socio-card">
+                <h4>Claudia Junco Gurza</h4>
+                <div class="cargo">Socia · Telecom, Competencia, Datos</div>
+                <p>Especialista en telecomunicaciones, obtuvo el primer permiso OMVR en México. Experiencia ante CITEL, UIT y asesoría en regulación sectorial.</p>
+                <button class="btn btn-light bio-socio" data-socio="claudia">Ver perfil completo</button>
+            </div>
+            <div class="socio-card">
+                <h4>Juan José Flores Zendejas</h4>
+                <div class="cargo">Socio · Litigio y Administrativo</div>
+                <p>Experiencia en la SCJN, Juzgados de Distrito, amparo, juicios de nulidad. Asesor legislativo y dominio de idiomas.</p>
+                <button class="btn btn-light bio-socio" data-socio="juanjose">Ver perfil completo</button>
+            </div>
+            <div class="socio-card">
+                <h4>Eduardo Palazuelos Zaragoza</h4>
+                <div class="cargo">Socio · Corporativo, Regulación Bancaria</div>
+                <p>Director Jurídico en IPAB, Gerente de Normatividad en CNBV. Reestructuras, disolución de instituciones financieras y atención a conglomerados escolares.</p>
+                <button class="btn btn-light bio-socio" data-socio="eduardo">Ver perfil completo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacto con dirección, email y teléfonos -->
+    <div class="container" id="contacto">
+        <div class="contact-section">
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <h2 style="color: #0f5c2f; margin-bottom: 1rem;">Contacto</h2>
+                    <p><strong>📍 Dirección:</strong> Las Praderas 12, Col. Jardines del Pedregral, Ciudad de México, 04500.</p>
+                    <p><strong>✉️ Email:</strong> contacto@grnd.mx</p>
+                    <p><strong>📞 Teléfonos:</strong> +52 (55) 9388-0408</p>
+                    <p style="margin-top: 1rem;"><strong>Atención estratégica en litigio, corporativo y más.</strong></p>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-large" id="btnContactoWhats">📲 Enviar mensaje</button>
+                    <button class="btn btn-outline" id="btnLlamar" style="margin-left: 0.5rem;">📞 Llamar ahora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="#">Aviso de Privacidad</a>
+            <a href="#">Términos y Condiciones</a>
+            <a href="mailto:contacto@grnd.mx">contacto@grnd.mx</a>
+        </div>
+        <p>GR&ND · Ingeniería legal, dinamismo y especialidad. Proteger a nuestros clientes es la prioridad. © 2026</p>
+    </div>
+</footer>
+
+<script>
+    // Botón Conocer la firma (muestra la descripción de LA FIRMA)
+    document.getElementById('btnConocerFirma').addEventListener('click', () => {
+        alert("GR&ND · Somos una firma compuesta por socios jóvenes con más de 35 años de experiencia acumulada. Nos formamos en las mejores instituciones académicas y contamos con estudios de posgrado en universidades del extranjero. Especialistas en estudiar las particularidades estructurales de nuestros clientes, su apetito de riesgo y prestar servicios jurídicos de alta calidad.");
+    });
+
+    // Botón Áreas de práctica (scroll suave)
+    document.getElementById('btnAreasPractica').addEventListener('click', () => {
+        document.getElementById('areas').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Botón Consulta rápida
+    document.getElementById('btnConsultaRapida').addEventListener('click', () => {
+        alert("📋 Asesoría legal inmediata: comunícate al +52 (55) 9388-0408 o escribe a contacto@grnd.mx. Nuestro equipo atenderá tu consulta con absoluta confidencialidad.");
+    });
+
+    // Botones de información detallada de cada área
+    const areaButtons = document.querySelectorAll('.info-area');
+    const areaInfo = {
+        correduria: "🔹 CORREDURÍA / FE PÚBLICA / VALUACIÓN: Servicios de notificación de documentos, requerimientos de pago, fe de hechos, protesto, certificaciones, valuación de bienes, intangibles, aeronaves, joyas, precios de transferencia. Más de 20 mil operaciones exitosas a nivel nacional.",
+        financiero: "🔹 FINANCIERO: Asesoría en regulatorio bancario, bursátil, Project Finance, prevención de lavado de dinero, auditorías externas, estructuración de créditos sindicados, financiamiento de infraestructura, reestructuras crediticias. Atención a bancos, SOFOMES, SOFIPOS, FINTECH y más.",
+        corporativo: "🔹 CORPORATIVO: Formación de gobiernos corporativos, fusiones, adquisiciones, due diligence, propiedad intelectual, derechos de autor, marcas, patentes. Asesoría en derecho migratorio, convenios de accionistas y reestructura societaria.",
+        administrativo: "🔹 DERECHO ADMINISTRATIVO Y LITIGIO: Juicios de amparo directo e indirecto, nulidad ante tribunales contenciosos, representación ante SAT, IMSS, PROFECO, COFEPRIS, CNBV. Litigio mercantil y estrategias de defensa constitucional.",
+        telecom: "🔹 TELECOM: Obtención de concesiones y licencias, asesoría en marco regulatorio de telecomunicaciones, participación en licitaciones, representación ante IFT, SCT, UIT, CITEL. Privacidad de datos, políticas de uso de servicios electrónicos.",
+        mediacion: "🔹 MEDIACIÓN PRIVADA: Mediación Civil, Mercantil y Familiar con mediador certificado por el Centro de Justicia Alternativa (TSJCDMX). Convenios con fuerza de sentencia ejecutable. Conflictos entre accionistas, contratos, arrendamiento, divorcios, convivencia familiar."
+    };
+    areaButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const area = btn.getAttribute('data-area');
+            if(areaInfo[area]) alert(areaInfo[area]);
+            else alert("Información detallada disponible en nuestra área legal.");
+        });
+    });
+
+    // Biografías detalladas de socios (texto extraído del briefing)
+    const sociosBio = {
+        daniel: "DANIEL F. NÚÑEZ DURÁN: Socio especialista en derecho financiero y corporativo. Experiencia en operaciones bursátiles, estructuración de programas de cumplimiento normativo para empresas bursátiles y entidades financieras. Maestría en Instituciones de Derecho Financiero (UP). Certificado por AMIB. Lidera áreas bancaria, financiera, PLD, fusiones y adquisiciones.",
+        claudia: "CLAUDIA JUNCO GURZA: Socia especializada en telecomunicaciones, tecnologías de la información y competencia económica. Obtuvo el primer permiso de Operador Móvil Virtual en México. Asesora legal ante IFT, CITEL, UIT. Maestría en Derecho de Negocios Internacionales (IBERO). Coordina áreas de telecom, competencia, datos personales y corporativo.",
+        juanjose: "JUAN JOSÉ FLORES ZENDEJAS: Socio experto en litigio administrativo y amparo. Laboró en la Suprema Corte de Justicia de la Nación y como Secretario en Juzgados de Distrito. Asesor legislativo en el Congreso de la Unión. Maestría en Derecho del Comercio Internacional (UNIR). Idiomas: francés, alemán, inglés. A cargo de litigio y consultoría administrativa.",
+        eduardo: "EDUARDO PALAZUELOS ZARAGOZA: Socio en corporativo y regulación bancaria. Fue Director General Jurídico de Protección al Ahorro (IPAB) y Gerente de Normatividad en CNBV. Experiencia en reestructuras crediticias, disolución de instituciones financieras, negociación de transacciones complejas. Maestría en Derecho Administrativo y de la Regulación (ITAM)."
+    };
+    const socioBtns = document.querySelectorAll('.bio-socio');
+    socioBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const socio = btn.getAttribute('data-socio');
+            if(sociosBio[socio]) alert(sociosBio[socio]);
+            else alert("Perfil detallado disponible en nuestras oficinas.");
+        });
+    });
+
+    // Botón WhatsApp / mensaje
+    const btnContacto = document.getElementById('btnContactoWhats');
+    if(btnContacto) {
+        btnContacto.addEventListener('click', () => {
+            window.open("https://wa.me/525593880408?text=Hola%20GR%26ND%2C%20me%20interesa%20asesor%C3%ADa%20legal%20especializada.", "_blank");
+            alert("Serás redirigido a WhatsApp para atención inmediata.");
+        });
+    }
+    // Botón llamar
+    const btnLlamar = document.getElementById('btnLlamar');
+    if(btnLlamar) {
+        btnLlamar.addEventListener('click', () => {
+            alert("📞 Contáctanos vía telefónica: +52 (55) 9388-0408. Horario de atención: 9:00 a 19:00 hrs.");
+        });
+    }
+</script>
+</body>
+</html>
